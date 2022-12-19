@@ -1,0 +1,81 @@
+{% assign collection_handle = collection.handle %}
+
+{% if section.blocks.size > 0 %}
+
+{% for block in section.blocks %}
+{% if block.settings.collection_handle == collection_handle %}
+{% assign items = block.settings %}
+<div class="collection__banner--top">
+  {% if items.banner != blank %}
+  <div class="small--hidden__banner">
+    <img src="{{items.banner | img_url: '1477x332'}}" style="display:block; height:auto; width:100%;">
+  </div>
+  {% endif %}
+  {% if items.banner2 != blank %}
+  <div class="medium-up--hidden__banner">
+    <img src="{{items.banner2 | img_url: '600x480'}}" style="display:block; height:auto; width:100%;">
+  </div>
+  {% endif %}
+</div>
+
+{% endif %}
+{% endfor %}
+
+{% endif %}
+
+
+<style>
+ .medium-up--hidden__banner{
+   display:none !important;
+ }
+  @media(max-width:700px){
+    .small--hidden__banner{
+      display:none !important;
+    }
+    .medium-up--hidden__banner {
+      display:block !important;
+    }
+  }
+    
+</style>
+
+
+{% schema %}
+  {
+    "name": "Collection Banners New",
+    "class": "index-section",
+    "settings": [
+
+    ],
+    "blocks": [
+      {
+        "type": "text_block",
+        "name": "Collection Banners",
+        "settings": [
+		  {
+            "type": "collection",
+            "id": "collection_handle",
+            "label": "Select a Collection"
+          },
+		  {
+            "type": "image_picker",
+            "id": "banner",
+            "label": "Desktop Banner"
+          },
+		  {
+            "type": "image_picker",
+            "id": "banner2",
+            "label": "Mobile Banner"
+          }
+		    
+        ]
+      }
+    ],
+"presets":[{
+"name":"Banner Collection New"
+
+}
+
+]
+  }
+{% endschema %}
