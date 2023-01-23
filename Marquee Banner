@@ -1,0 +1,102 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+
+<div id="gallery">
+  <img src="{{ section.settings.img1|img_url:'master' }}">
+  <img src="{{ section.settings.img2|img_url:'master' }}">
+  <img src="{{ section.settings.img3|img_url:'master' }}">
+ <img src="{{ section.settings.img4|img_url:'master' }}">
+ <img src="{{ section.settings.img5|img_url:'master' }}">
+ <img src="{{ section.settings.img6|img_url:'master' }}">
+</div>
+
+
+
+
+{% schema %}
+  {
+    "name": "Marquee Banner",
+    "settings": [
+{
+"type":"image_picker",
+"id":"img1",
+"label":"image 1"
+
+},
+{
+"type":"image_picker",
+"id":"img2",
+"label":"image 2"
+
+},
+{
+"type":"image_picker",
+"id":"img3",
+"label":"image 3"
+
+},
+{
+"type":"image_picker",
+"id":"img4",
+"label":"image 4"
+
+},
+{
+"type":"image_picker",
+"id":"img5",
+"label":"image 5"
+
+},
+{
+"type":"image_picker",
+"id":"img6",
+"label":"image 6"
+
+}
+],
+"presets":[
+{
+"name":"marquee Banner"
+}
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+#gallery{
+  margin: 1rem;
+  
+ #gallery img{
+    margin: .2rem;
+  }
+}
+
+{% endstylesheet %}
+
+
+
+<script>
+
+$('#gallery').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 0,
+  speed: 8000,
+  pauseOnHover: false,
+  cssEase: 'linear',
+   responsive: [
+     
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
+});
+</script>
