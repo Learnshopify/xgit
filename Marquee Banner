@@ -3,7 +3,11 @@
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-
+<style>
+#gallery button{
+display:none !important;
+}
+</style>
 
 <div id="gallery">
   <img src="{{ section.settings.img1|img_url:'master' }}">
@@ -69,11 +73,14 @@
 {% stylesheet %}
 #gallery{
   margin: 1rem;
-  
+}
  #gallery img{
     margin: .2rem;
   }
-}
+
+
+
+
 
 {% endstylesheet %}
 
