@@ -9,8 +9,8 @@
 </div>
 {% endif %}
 <div class="faq-container">
-{% if item.question1!=blank  %}
-  <h2 class="text-center">{{block.settings.heading}} </h2>{% endif %}<br>
+
+  <h2 class="text-center">{{block.settings.heading}} </h2><br>
   <div class="dptabs">
     {% assign item = block.settings %}
 
