@@ -1,0 +1,366 @@
+{% assign collection_handle = collection.handle %}
+{% if section.blocks.size > 0 %}
+
+{% for block in section.blocks %}
+{% if block.settings.collection_handle == collection_handle %}
+{% if block.settings.img != blank %}
+<div class="product__img">
+  <img src="{{block.settings.img | img_url: 'master'}}">
+</div>
+{% endif %}
+<div class="faq-container">
+{% if item.question1!=blank  %}
+  <h2 class="text-center">{{block.settings.heading}} </h2>{% endif %}<br>
+  <div class="dptabs">
+    {% assign item = block.settings %}
+
+    {% if item.question1 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_1" class="faq-checkbox">
+      <label for="faq_checkbox_1" class="dptab-label button button--primary">{{ item.question1 }}</label>
+      <div class="dptab-content">{{ item.answer1 }}</div>
+    </div>
+    {% endif %}
+    {% if item.question2 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_2" class="faq-checkbox">
+      <label for="faq_checkbox_2" class="dptab-label button button--primary">{{ item.question2 }}</label>
+      <div class="dptab-content">{{ item.answer2 }}</div>
+    </div>
+    {% endif %}
+    {% if item.question3 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_3" class="faq-checkbox">
+      <label for="faq_checkbox_3" class="dptab-label button button--primary">{{ item.question3 }}</label>
+      <div class="dptab-content">{{ item.answer3 }}</div>
+    </div>
+    {% endif %}
+    {% if item.question4 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_4" class="faq-checkbox">
+      <label for="faq_checkbox_4" class="dptab-label button button--primary">{{ item.question4 }}</label>
+      <div class="dptab-content">{{ item.answer4 }}</div>
+    </div>
+    {% endif %}
+    {% if item.question5 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_5" class="faq-checkbox">
+      <label for="faq_checkbox_5" class="dptab-label button button--primary">{{ item.question5 }}</label>
+      <div class="dptab-content">{{ item.answer5 }}</div>
+    </div>
+    {% endif %}      
+    {% if item.question6 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_6" class="faq-checkbox">
+      <label for="faq_checkbox_6" class="dptab-label button button--primary">{{ item.question6 }}</label>
+      <div class="dptab-content">{{ item.answer6 }}</div>
+    </div>
+    {% endif %}
+    {% if item.question7 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_7" class="faq-checkbox">
+      <label for="faq_checkbox_7" class="dptab-label button button--primary">{{ item.question7 }}</label>
+      <div class="dptab-content">{{ item.answer7 }}</div>
+    </div>
+    {% endif %}
+    {% if item.question8 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_8" class="faq-checkbox">
+      <label for="faq_checkbox_8" class="dptab-label button button--primary">{{ item.question8 }}</label>
+      <div class="dptab-content">{{ item.answer8 }}</div>
+    </div>
+    {% endif %}
+    {% if item.question9 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_9" class="faq-checkbox">
+      <label for="faq_checkbox_9" class="dptab-label button button--primary">{{ item.question9 }}</label>
+      <div class="dptab-content">{{ item.answer9 }}</div>
+    </div>
+    {% endif %}
+    {% if item.question0 != blank %}
+    <div class="dptab">
+      <input type="checkbox" id="faq_checkbox_0" class="faq-checkbox">
+      <label for="faq_checkbox_0" class="dptab-label button button--primary">{{ item.question0 }}</label>
+      <div class="dptab-content">{{ item.answer0 }}</div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% endif %}
+
+
+<style>
+  
+  .faq-container {
+    max-width: 60%;
+    margin: 25px auto;
+  }
+
+@media(max-width:700px){
+  .faq-container {
+    max-width: 90%;
+    margin: 25px auto;
+  }
+}
+
+  .faq-checkbox {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+  .dptabs {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+.dptab {
+  width: 100%;
+  color: #000;
+  background: #fff;
+  overflow: hidden;
+  margin: 8px auto;
+  border: 1px solid #dfdfdf;
+}
+.dptab-label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 11px 20px;
+  font-weight: 700;
+  color: #000;
+  background: transparent;
+
+}
+.dptab-label:after {
+  content: "+";
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  transition: all 0.2s;
+  font-size:1.25rem;
+}
+.dptab-content {
+  max-height: 0;
+  padding: 0 1em;
+  background-color: white;
+  transition: all 0.2s;
+  color: black;
+   font-weight: 500;
+}
+.dptab-content p {
+  margin: 0;
+}
+.faq-checkbox:checked + .dptab-label:after {
+  content: "-";
+}
+.faq-checkbox:checked ~ .dptab-content {
+  max-height: 100vh;
+  padding: 20px;
+}
+  
+</style>
+
+{% schema %}
+{
+  "name": "FAQ Page",
+  "class": "index-section",
+  "blocks": [
+    {
+      "name": "FAQ Item",
+      "type": "faq",
+      "settings": [
+      {
+        "type": "collection",
+        "id": "collection_handle",
+        "label": "Select a Collection"
+      },
+	  {
+		"type": "image_picker",
+		"id": "img",
+		"label": "Banner"
+	  },
+	  {
+        "type": "text",
+        "id": "heading",
+        "label": "Main Heading",
+		"default": "Faqs"
+      },
+	  {
+		"type":"header",
+		"content":"1st tab"
+	  },
+      {
+        "type": "text",
+        "id": "question1",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer1",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      },
+	  {
+		"type":"header",
+		"content":"2nd tab"
+	  },
+      {
+        "type": "text",
+        "id": "question2",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer2",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      },
+	  {
+		"type":"header",
+		"content":"3rd tab"
+	  },
+      {
+        "type": "text",
+        "id": "question3",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer3",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      },
+	  {
+		"type":"header",
+		"content":"4th tab"
+	  },
+      {
+        "type": "text",
+        "id": "question4",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer4",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      },
+	  {
+		"type":"header",
+		"content":"5th tab"
+	  },
+      {
+        "type": "text",
+        "id": "question5",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer5",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      },
+	  {
+		"type":"header",
+		"content":"6th tab"
+	  },
+      {
+        "type": "text",
+        "id": "question6",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer6",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      },
+	  {
+		"type":"header",
+		"content":"7th tab"
+	  },
+      {
+        "type": "text",
+        "id": "question7",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer7",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      },
+	  {
+		"type":"header",
+		"content":"8th tab"
+	  },
+      {
+        "type": "text",
+        "id": "question8",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer8",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      },
+	  {
+		"type":"header",
+		"content":"9th tab"
+	  },
+      {
+        "type": "text",
+        "id": "question9",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer9",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      },
+	  {
+		"type":"header",
+		"content":"10th tab"
+	  },
+      {
+        "type": "text",
+        "id": "question0",
+        "label": "Question",
+        "default": "Do you have a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "answer0",
+        "label": "Answer",
+        "default": "<p>I have an answer</p>"
+      }
+      ]
+    }
+  ], "presets":[
+{
+"name":"faqs",
+"category":"collection"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
