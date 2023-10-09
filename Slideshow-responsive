@@ -1,0 +1,131 @@
+<div class="custom-slideshow">
+  <div class="desktop-slide">
+    <img src="{{ section.settings.desktop_image | img_url }}" alt="Desktop Image">
+    <div class="text-overlay">
+      {{ section.settings.desktop_text }}
+    </div>
+  </div>
+  <div class="mobile-slide">
+    <img src="{{ section.settings.mobile_image | img_url }}" alt="Mobile Image">
+    <div class="text-overlay">
+      {{ section.settings.mobile_text }}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Add your custom CSS styles for the slideshow here */
+</style>
+
+<script>
+  /* Add JavaScript for slideshow functionality here */
+</script>
+
+
+
+
+{% schema %}
+ {
+  "name": "Custom Slideshow",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Desktop Image",
+      "id": "desktop_image"
+    },
+    {
+      "type": "text",
+      "label": "Desktop Text",
+      "id": "desktop_text"
+    },
+    {
+      "type": "image_picker",
+      "label": "Mobile Image",
+      "id": "mobile_image"
+    },
+    {
+      "type": "text",
+      "label": "Mobile Text",
+      "id": "mobile_text"
+    }
+  ],
+"presets":[{
+
+"name":"slideshow-new"
+}]
+}
+  
+
+{% endschema %}
+
+
+
+<style>
+  /* Custom slideshow styles */
+  .custom-slideshow {
+    position: relative;
+  }
+
+  .desktop-slide,
+  .mobile-slide {
+    position: relative;
+  }
+
+  .desktop-slide img,
+  .mobile-slide img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+
+  /* Adjust styles for different screen sizes */
+  @media screen and (max-width: 768px) {
+    .desktop-slide {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .mobile-slide {
+      display: none;
+    }
+  }
+</style>
+
+
+
+{% javascript %}
+<script>
+  // JavaScript for slideshow functionality using Slick Carousel
+  $(document).ready(function () {
+    $('.custom-slideshow .desktop-slide').slick({
+      // Desktop slideshow options
+      arrows: false,
+      dots: true,
+      fade: true,
+      adaptiveHeight: true,
+      // Add other options as needed
+    });
+
+    $('.custom-slideshow .mobile-slide').slick({
+      // Mobile slideshow options
+      arrows: false,
+      dots: true,
+      adaptiveHeight: true,
+      // Add other options as needed
+    });
+  });
+</script>
+
+{% endjavascript %}
